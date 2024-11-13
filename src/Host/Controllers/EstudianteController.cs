@@ -21,39 +21,11 @@ namespace Host.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] EstudianteDTO request)
-        {
-            var result = await _estudianteService.CrearEstudiante(request);
-            return Ok(result);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetEstudiante([FromQuery] int edad)
-        {
-            var result = await _estudianteService.GetEstudiantes(edad);
-            return Ok(result);
-        }
-
-        [HttpDelete("deleteEstudiante/{id}")]
-        public async Task<IActionResult> DeleteEstudiante(int id)
-        {
-            var result = await _estudianteService.DeleteEstudiante(id);
-            return Ok(result);
-        }
-
-        [HttpPut("updateEstudiante")]
-        public async Task<IActionResult> UpdateEstudiante([FromBody] EstudianteDTO request)
-        {
-            var result = await _estudianteService.UpdateEstudiante(request);
-            return Ok(result);
-        }
-
-        [HttpGet("generarPDFEstudiantes")]
-        public async Task<IActionResult> GetEstudiantePDF()
+        [HttpGet("pdf")]
+        public async Task<IActionResult> generarPDF()
         {
             var result = await _estudianteService.GetEstudiantePDF();
-            return File(result, "application/pdf", "reporte.pdf");
+            return File(result, "application/pdf", "pdf.pdf");
         }
 
     }
